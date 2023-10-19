@@ -7,7 +7,7 @@ This CMS is the main source code for several websites that have been modified, i
 1. https://www.wartasawit.com
 2. https://www.wartatambang.com
 3. https://www.jatengdigital.com
-4. https://www.infomilitary.com
+4. https://www.infomiliter.com
 5. https://www.legalcenter.id
 6. https://www.gojateng.com
 
