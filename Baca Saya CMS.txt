@@ -1,0 +1,233 @@
+CMS Lokomedia versi 1.6.1
+(Update terakhir 10 Agustus 2012)
+
+
+- Seiring terbitnya buku 'TRIK DAHSYAT MENGUASAI AJAX DENGAN JQUERY', maka CMS Lokomedia pun resmi update.
+
+- Syarat utama menjalankan CMS Lokomedia, pastikan mod_rewrite pada server Apache sudah diaktifkan, caranya ada di buku atau bisa disaksikan langsung video tutorialnya yang ada di CD.
+
+- Dan jangan lupa Import databasenya melalui phpMyAdmin dengan nama database dblokomedia (dblokomedia.sql).
+
+- Untuk masuk ke halaman Administrator, ketik alamat berikut:
+
+http://localhost/lokomedia/adminweb/
+
+atau kalau sudah di online-kan:
+
+http://namadomain/adminweb/
+
+Isikan Username: admin dan Password: admin.
+Tips: Segera ganti passwordnya apabila Anda sudah masuk ke halaman Administrator.  
+
+- Adapun file untuk konfigurasi database bisa Anda temukan di folder lokomedia/config/koneksi.php, silahkan sesuaikan dengan username dan password database di komputer atau server hosting(domain) Anda.
+
+- Dan terakhir, kritik dan saran membangun sangat saya harapkan dari para pembaca/pengguna CMS Lokomedia agar terus dapat berjalan dengan baik dan stabil.
+
+
+Salam Hangat,
+
+Lukmanul Hakim
+(www.bukulokomedia.com)
+
+
+
+
+Log update terakhir:
+
+10/08/2012 (lokomedia-1.6.1)
+- Menu Dropdown 3 Level, baru diterapkan pada template eL jQuery, eL jQuery versi 2, eL jQuery ala Yahoo, tutorialnya bisa dibaca di http://www.bukulokomedia.com/artikel-165-membuat-halaman-statis-dan-submenu-didalam-submenu.html {Thanks to Thiant J-fruit}
+- Menu Dropdown yang dinamis pada halaman Administrator yang pengaturannya pada menu Setting Menu > Menu Utama dan Sub Menu. Penambahan field adminmenu pada tabel mainmenu dan field adminsubmenu pada tabel submenu. Sehingga modulnya juga ada perubahan yang bisa dilihat pada folder mod_menuutama dan mod_submenu. {Thanks to adhitya sukma (drafest)}
+- Style komentar pada template Sandbox, contoh penerapannya bisa dilihat di website http://bukulokomedia.com {Thanks to Fajar Juniansyah} 
+- Perubahan desain header pada templates eL jQuery ala Yahoo {Thanks to Rizal Faizal}
+- Penambahan plugin Youtube Iframe pada editor WYSIWYG TinyMCE, sehingga memungkinkan posting video dalam artikel, tutorial penggunaannya bisa dibaca di http://www.bukulokomedia.com/artikel-166-posting-video-youtube-dalam-artikel-di-cms-lokomedia.html.
+- Penambahan templates baru bernama Poeji yang berada di folder templates/poeji yang merupakan salah satu pemenang lomba web templates yang pernah diadakan penerbit Lokomedia. {Thanks to Puji Kartono}
+
+
+01/07/2012 (lokomedia-1.6)
+- Perbaikan Halaman Statis, apabila menambahkan halaman statis yang tidak ada gambarnya maka error, ternyata ada kelebihan kode pada skrip aksi_halamanstatis.php, pada baris ke-59 (link_statis) dan baris ke-63($link_statis), hapus kedua baris tersebut {Thanks to NATO}
+- Perbaikan Sekilas Info, tambah dan update data gagal, perbaikan pada file sekilasinfo.php dan aksi_sekilasinfo.php yang berada di folder adminweb/modul/mod_sekilasinfo {Thanks to adecma}
+- Untuk berita depannya diawali dengan huruf, ketika di-klik Selengkapnya menuju ke detail berita, namun isinya blank/kosong, hal ini disebabkan fungsi validasi security, oleh karena itu diganti validasinya dengan fungsi .abs((int)$_GET[id]). {Thanks to SomeOne}
+- Modifikasi Template Admin {Thanks to Wahyu dan Hirin}
+
+
+31/05/2012 (lokomedia-1.5.9)
+- Ketika menon-aktifkan submenu tidak berfungsi, perbaikan pada file aksi_submenu.php yang berada di folder adminweb/modul/mod_submenu, lihat pada baris ke-37 ada tambahan satu baris kode yaitu aktif = '$_POST[aktif]', {Thanks to djupi and newbe lokomedia}
+- Ada tampilan error pada template Standar, silahkan buka file template.php yang berada di folder templates/standar, lihat pada baris ke-51 dan 56, penyebutan include 2x, seharusnya sekali aja {Thanks to NATO & ardee}
+- Ketika menambahkan gambar pada album terjadi error, perbaikan pada file aksi_album.php yang berada di folder adminweb/modul/mod_album, tambahkan pada baris 20 dan 56, satu baris kode yaitu $tipe_file = $_FILES['fupload']['type']; {Thanks to NATO & Agus Pacitan}
+- Pada templates Sandbox, ketika diklik salah satu gambar pada Galeri Foto, maka urlnya menjadi misalnya: http://cms.bukulokomedia.com/album-17-arsitektur.html#!prettyPhoto[gallery]/0/, sehingga ketika gambar ditutup, maka link-nya akan tetap seperti itu, dimana apabila dilakukan Refresh (F5) akan membuat gambarnya terbuka lagi, padahal kita ingin melihat gambar lain pada album galeri foto tersebut. Solusinya, buka file jquery.prettyphoto.js yang berada di folder templates/sandbox/js, lihat pada baris ke-27 dimana value deeplinking yang semula true ubah menjadi false {Thanks to Nugi}
+- Pada templates Sandbox juga terjadi double judul pada Galeri Foto, sehingga keterangan foto tidak tampil, perbaikan pada file content.php yang berada di folder templates/sandbox, ubah pada baris ke-618 menjadi: 				
+
+echo '<img src="'.$f[folder].'/script/timthumb.php?src=img_galeri/'.$w[gbr_gallery].'&amp;w=160&amp;h=120" alt="'.$w[jdl_gallery].'" /></a>';
+
+Kemudian pada file template.php yang berada di folder templates/sandbox, ubah pada baris ke-30 menjadi:
+
+<img src="'.$f[folder].'/script/timthumb.php?src=img_galeri/'.$w[gbr_gallery].'&amp;w=160&amp;h=120" alt="'.$w[jdl_gallery].'" />
+
+{Thanks to Rizal Faizal}
+
+- Dalam modul Identitas Website ditambahkan satu input baru, yaitu Alamat Website untuk mengisikan url website Anda kalau nantinya sudah di-online-kan. Jadi, ada penambahan satu field baru di tabel identitas dengan nama alamat_website. Dan juga ada perubahan pada file identitas.php dan aksi_identitas.php yang ada di folder adminweb/modul/mod_identitas. Hal ini juga berguna agar ketika kembali ke halaman utama (index.php), alamat websitenya menjadi benar, jadi ada perbaikan juga di file index.php {Thanks to Ridwan Akbar}
+- Bagi pengguna templates Sandbox yang gambarnya tidak tampil, coba gunakan file timthumb.php versi terbaru yang disertakan pada versi 1.5.9 ini, kemudian copy-kan (overwrite) ke folder templates/sandbox/script, dan pastikan pada folder tersebut sudah ada folder cache. Dan apabila gambar tidak mau tampil juga, ubah hak akses (Change Permission) folder cache dan file timthumb.php dengan CHMOD 755.
+- Banyak yang kesulitan menambahkan Halaman Statis, oleh karena itu saya membuatkan tampilan link statis pada halaman utama Halaman Statis di Administrator yang nantinya akan dijadikan link pada saat pembuatan Menu atau Sub Menu. Perbaikannya pada file halamanstatis.php yang berada di folder adminweb/modul/mod_halamanstatis, lihat penambahan kode pada baris ke 24 s/d 31.
+- Penambahan templates baru bernama Just Simple Blue yang berada di folder templates/blue yang merupakan salah satu pemenang lomba web templates yang pernah diadakan penerbit Lokomedia. {Thanks to Dian Pamungkas}
+- Dan update terakhir adalah Social Media, dimana apabila Anda klik salah satu judul berita untuk melihat detail dari berita tersebut, maka akan tampil dibawah judul berupa ikon-ikon untuk share berita via Facebook, Twitter, Email, Gmail, dll. Begitu juga diakhir berita ada ikon untuk Like dan Kirim Facebook. Semua templates pada CMS Lokomedia 1.5.9 sudah diterapkan fitur social media, terus bagi yang suka ngoprek nanya bagaimana cara penerapan pada masing-masing templates. Misalnya untuk template baru bernama Just Simple Blue, buka file kiri.php yang berada di folder templates/blue, perhatikan tambahan kode pada baris ke-213 s/d 223 dan juga pada baris ke-232 s/d 237, kemudian buka juga file template.php yang masih berada di folder yang sama, perhatikan tambahan kode pada baris ke-82 s/d 89 {Thanks to Rizal Faizal} 
+
+
+
+02/05/2012 (lokomedia-1.5.8)
+- Penambahan templates baru bernama Sandbox yang berada di folder templates/sandbox yang merupakan salah satu pemenang lomba web templates yang pernah diadakan penerbit Lokomedia dan juga digunakan sebagai templates website bukulokomedia.com. {Thanks to Ahmad Nugraha}
+- Pada versi sebelumnya (1.5.7), security baru diterapkan pada templates eljquery-yahoo, maka pada versi ini semua templates sudah disesuaikan security-nya.
+- Karena pengaruh penerapan security pada versi 1.5.7, maka komentarnya menjadi tidak berfungsi (pengunjung tidak bisa memberikan komentar), perbaikannya pada file simpankomentar.php yang ada di folder utama lokomedia, tepatnya pada baris kode ke-58 {Thanks to Yapono & Rade} 
+- Ketika Anda keluar (Logout) dari halaman Administrator, ada kotak dialog yang menginformasikan bahwa Anda telah keluar dari halaman Administrator, dimana kalau Anda klik tombol OK, maka akan langsung diarahkan ke halaman pengunjung. {Thanks to Rizal Faizal}
+- Biasanya saat kita mengakses website berbasis CMS Lokomedia, misalnya http://bukulokomedia.com, maka setelah halaman utamanya terbuka, maka url-nya berubah menjadi http://bukulokomedia.com/home. Namun, mengikuti standar CMS-CMS populer seperti Joomla, Drupal, dan Wordpress, maka mulai versi ini tulisan home di belakang url dihilangkan menjadi http://bukulokomedia.com. Apa saja yang perlu diubah, silahkan baca tutorial lengkapnya di http://komputerkampus.com/artikel-40/cara-menghilangkan-hapus-url-home-disetiap-halaman-awal-cms-lokomedia/ {Thanks to M. Ridha} 
+- Mengorganisir file-file untuk template standar dan template building. Sebelumnya, file kiri.php, kanan.php, tengah.php, dan topmenu.php berada di folder utama lokomedia, sekarang sudah dikelompokkan di foldernya masing-masing templates, yaitu di folder templates/building dan templates/standar.
+- Saat ini kita bisa mengaktifkan/menon-aktifkan Menu Utama yang berada di header website, namun kita tidak bisa melakukan hal tersebut pada Sub Menu-nya. Oleh karena itu, saya tambahkan satu field baru bernama aktif di tabel submenu. Kemudian untuk pengaturan aktif submenu di halaman Administrator, perubahan pada file submenu.php dan aksi_submenu.php yang ada di folder lokomedia/adminweb/modul/mod_submenu. Sedangkan untuk pengaturan aktif submenu di halaman pengunjung, perubahan pada file topmenu.php untuk templates/standar dan templates/building. File template.php untuk templates/eljquery, templates/eljquery2, templates/eljquery-yahoo. File header.php untuk templates/sandbox.
+- Pada halaman Administrator, Admin tidak bisa mengedit data Berita dan Agenda yang diposting oleh user biasa. Menurut aturannya, selain bisa melihat seluruh data yang ada di halaman Administrator, seharusnya Admin juga punya wewenang untuk mengedit/menghapus data Berita dan Agenda oleh user apapun. Perbaikannya pada file berita.php (folder lokomedia/adminweb/mod_berita) dan file agenda.php (folder lokomedia/adminweb/mod_agenda). {Thanks to Irfan}
+- Apabila Anda menggunakan template building atau template standar, disana ada fitur Breadcrumb untuk navigasi halaman, perbaikan pada file breadcumb.php yang ada di folder utama lokomedia, yaitu perbaikan untuk link Beranda/Home.
+- Dan terakhir, update editor WYSIWYG, dimana sebelumnya menggunakan TinyMCPUK diganti dengan TinyMCE yang merupakan induk dari TinyMCPUK, alasan utamanya karena TinyMCPUK sudah tidak dikembangkan lagi sejak tahun 2009, sehingga tidak ada update untuk bug dan security-nya. Namun, meski berganti editor dengan TinyMCE, saya tetap menggunakan nama folder TinyMCPUK, jadi tidak mengubah struktur di CMS Lokomedia sebelumnya, dimana didalamnya ada dua folder yaitu jscripts dan gambar. Sedangkan untuk upload gambar di TinyMCE, saya menggunakan KCFinder yang ada di folder utama lokomedia. Untuk lebih jelasnya, baik cara instalasi dan perubahan filenya, bisa Anda baca tutorial lengkapnya di:
+
+http://bukulokomedia.com/artikel-156-memadukan-tinymce-dan-kcfinder-di-cms-lokomedia.html
+
+- Sedangkan untuk menampilkan syntax highlight di halaman pengunjung, saya menggunakan plugin jQuery Snippet (http://steamdev.com/snippet/) untuk templates eljquery, eljquery2, eljquery-yahoo. Dan sebagai alternatif, saya juga mencontohkan penggunaan plugin SyntaxHighlighter(http://alexgorbatchev.com/SyntaxHighlighter/) untuk templates standar dan building. Demonya bisa dilihat di:
+
+http://bukulokomedia.com/artikel-153-teknik-looping-didalam-looping-disertai-studi-kasusnya.html
+
+- O iya, bulan Mei 2012 ini saya akan membuat tutorial tentang Syntax Highlight dan Upload Gambar di TextArea menggunakan TinyMCE agar lebih jelas cara mengoperasikannya.
+
+
+
+31/03/2012 (lokomedia-1.5.7)
+- Tanggal yang keliru di halaman utama templates eL jQuery ala Yahoo, perbaikan pada file kiri.php yang ada di folder lokomedia/templates/eljquery-yahoo, pada baris ke-129 dan 204 ditambahkan satu baris kode, yaitu: $tgl = tgl_indo($t[tanggal]); {Thanks to Yugo}
+- Tambah dan Edit Album di halaman admin tidak berfungsi, perbaikan pada file aksi_album.php yang ada di folder lokomedia/adminweb/modul/mod_album, pada baris ke-19 dan 55 ditambahkan satu baris kode, yaitu: $tipe_file = $_FILES['fupload']['type']; {Thanks to die_santo}
+- Ketika logout/keluar dari halaman admin langsung menuju ke halaman utama pengunjung, namun sebelumnya ada kotak dialog yang menginformasikan Anda telah keluar dari halaman administrator, perbaikan pada file logout.php yang ada di folder lokomedia/adminweb, ubah kode pada baris ke-4 menjadi:
+echo "<script>alert('Anda telah keluar dari halaman administrator'); window.location = '../index.php'</script>";
+{Thanks to Rizal Faizal, Ghoblin, and Andi}
+- Tambah dan Edit Sekilas Info di halaman admin tidak berfungsi, perbaikan pada file aksi_sekilasinfo.php yang ada di folder lokomedia/adminweb/modul/mod_sekilasinfo, kode pada baris ke-3 s/d 7 untuk direct access dihapus. {Thanks to Affandy and Boby}
+- Untuk menghindari SQL Injection dan XSS, dibuatlah sebuah fungsi (fungsi_validasi.php) yang diletakkan di folder lokomedia/config, fungsi tersebut dipanggil (require_once) melalui file koneksi.php (perhatikan pada baris 3 dan 16), dimana fungsi tersebut terutama untuk menangkal injeksi yang dilakukan melalui $_GET[id], cara penggunaannya: $val->validasi($_GET[id],'sql'). Sebagai contoh, penerapannya pada file kiri.php yang ada di folder lokomedia/templates/eljquery-yahoo, cukup banyak yang diubah, yaitu pada baris 248, 267, 287, 290, 300, 322, 332, 349, 358, 381, 400, 573, 734, 742, dan 762. Fungsi security ini baru diterapkan pada templates el jquery ala yahoo. Selanjutnya, bulan April 2012 ini akan dilakukan security testing lagi, apabila terbukti cukup aman, baru akan diterapkan pada templates lainnya, termasuk templates baru. {thanks to wenkhairu devilzc0de}
+- Satu lagi celah security, yaitu LFD (Local File Disclore) pada fitur Download, buka file downlot.php yang ada di folder lokomedia, pada baris ke-7 ditambahkan kode, yaitu: if(file_exists($direktori.$filename)) {thanks to wenkhairu devilzc0de}
+
+
+11/02/2012 (lokomedia-1.5.6)
+- Penambahan templates baru (hasil modifikasi dari templates eL jQuery Versi 2) dengan nama eL jQuery ala Yahoo, karena headline beritanya menggunakan news slider ala Yahoo {Thanks to Rizal Faizal}. Selain itu, ada tampilan Berita Terkini, Terpopuler dan Komentar dalam bentuk Tab yang terletak disamping kanan headline berita.
+- Menampilkan beberapa berita langsung didalam  kategorinya masing-masing dengan sedikit perbaikan, dimana terjadi pemotongan pada judul beritanya, hal ini dimaksudkan agar tidak ada berita yang tampil dalam dua baris, karena akan terjadi ketimpangan yang mengganggu kerapian tampilan website, namun apabila ingin melihat tampilan judul secara utuh, Anda bisa mengarahkan mouse ke atas judul yang diinginkan {Thanks to Rizal Faizal}
+- Menampilkan nama Galeri Foto pada Breadcumb, file kiri.php baris 687 /sd 688 {Thanks to Rizal Faizal}
+- Penambahan modul baru dengan nama Identitas Website untuk men-setting Nama Website, Meta Deskripsi, Meta Keyword, dan gambar Favicon. Untuk itu, ada penambahan sebuah tabel dengan nama identitas, dan juga ada dua buah file identitas.php dan aksi_identitas.php di folder adminweb/modul. Dan juga tentunya ada penyesuaian pada file dina_titel.php, dina_meta1.php, dina_meta2.php.
+- Tampilan captcha, font dan backgroundnya diubah menggunakan converter font. {Thanks to Rizal Faizal}
+- TinyMCPUK, apabila Anda meng-onlinekan buka file config.php yang terdapat di folder tinymcpuk/filemanager/connectors/php/, non-aktifkan baris ke-47 dan aktifkan baris ke-50.
+- Baris ke-57 pada file berita.php yang berada di folder adminweb/modul/mod_berita, <a href=\"$aksi?module=berita&act=hapus&id=$r[id_berita]&namafile=$r[gambar]\" onClick=\"return confirm('Apakah Anda benar-benar mau menghapusnya?')\">Hapus</a></td>
+
+
+04/01/2012 (lokomedia-1.5.5)
+- Pada modul sekilas info terdapat celah security, yaitu pada file aksi_sekilasinfo.php yang terdapat di folder adminweb/modul/mod_sekilasinfo/, dimana tidak adanya session yang menghalangi akses halaman tersebut, jadi siapa saja bisa mengakses halaman tersebut. Solusinya, cek session di server, lihat pada baris 3 s/d 8. 
+- Kemudian celah berikutnya adalah tidak adanya pengecekan mime dari file sebenarnya, sehingga dengan sedikit exploitasi kita mengupload file apa saja hanya dengan memanipulasi mime dari file sebenarnya. Solusinya, cek mime dari file yang di upload, lihat pada baris 36 s/d 50. {Thanks to Eidelweiss}.
+- Menampilkan beberapa berita langsung didalam kategori masing-masing menggunakan teknik looping didalam looping (while didalam while). Untuk bagian kiri, bisa dilihat pada file kiri.php yang terdapat di folder lokomedia/templates/eljquery2, lihat pada baris 69 s/d 107. Sedangkan bagian kanan, lihat pada baris 137 s/d 175 {Thanks to Poeji}.
+- Perbaikan error saat menambahkan Berita yang bukan Headline (adminweb/modul/mod_berita/berita.php) pada baris 136, seharusnya name=headline bukan name=publish {Thanks to nomor1001}.
+- Perbaikan error saat menghapus Sekilas Info (adminweb/modul/mod_sekilasinfo/aksi_sekilasinfo.php) pada baris 15, seharusnya unlink("../../../foto_info/kecil_$_GET[namafile]"); bukan unlink("../../../foto_info/small_$_GET[namafile]"); {Thanks to Komaruddin - virus13}.
+- Perbaikan error saat mengupload gambar yang bukan bertipe jpg saat Edit/Update Album (modul/mod_album/aksi_album.php) pada baris 15, seharusnya window.location=('../../media.php?module=album') bukan window.location=('../../media.php?module=berita') {Thanks to Komaruddin - virus13}.
+- Paging halaman komentar pada detail berita yang tidak berjalan dengan semestinya, perbaikan ada pada file .htaccess, ada dua baris yang diubah, yaitu:
+RewriteRule ^berita-(.*)-(.*)\.html$ media.php?module=detailberita&id=$1 [L]
+RewriteRule ^halkomentar-(.*)-([0-9]+)\.html$ media.php?module=detailberita&id=$1&halkomentar=$2 [L]
+{Thanks to Husada}
+
+
+
+10/02/2011 (lokomedia-1.5)
+- Penambahan templates baru, yaitu eL jQuery 2.
+
+22/01/2011 (lokomedia-1.4.6)
+- Penambahan session timeout (security), apabila admin/user lupa Logout (tidak ada aktifitas selama 90 detik) di halaman administrator, maka akan logout secara otomatis, untuk mengeset waktunya ada di file timeout.php yang terdapat di folder adminweb, penerapannya pada file media.php yang juga terdapat di folder adminweb.
+- Untuk form yang menyediakan form upload gambar, divalidasi hanya file ber-ekstension *.jpg yang boleh diupload (security), dalam hal ini terdapat di file aksi_berita.php, aksi_galerifoto.php, aksi_sekilasinfo.php, aksi_album.php, aksi_banner.php, dan aksi_halamanstatis.php
+- Begitu juga dengan file aksi_download.php, divalidasi tidak boleh mengupload file yang ber-ekstension *.php (security).
+- Perbaikan pada paging hasil pencarian Berita yang tidak berfungsi (config/class_paging.php).
+- Perbaikan pada modul Halaman Statis, dimana gambar tidak bisa di update (modul/mod_halamanstatis/aksi_halamanstatis.php).
+- Penambahan fitur Headline pada Berita, sehingga apabila berita di set Headline, terutama untuk berita yang ada gambarnya, maka akan tampil di halaman utama website sebagai headline berita.
+- Pencegahan user biasa untuk mengedit berita milik admin atau milik user lain (modul/mod_berita/berita.php).
+
+
+27/09/2010 (lokomedia-1.4.5):
+- Penambahan templates baru bernama eL jQuery yang diambil dari buku 'Bikin Website Super Keren dengan PHP & jQuery" dan akan dijadikan templates default dari CMS Lokomedia.
+- Perbaikan Paging ala Google, sehingga dapat berfungsi pada semua modul, termasuk kategori yang mengandung dua kata, perbaikannya cukup di file .htaccess (thanks to Husada).
+- Penambahan Paging ala Google untuk Komentar.
+- Sedikit perbaikan pada halaman Profil, dimana apabila Anda mengedit profil dan menggantinya dengan profil website Anda, maka tampilan pada halaman pengunjung untuk halaman profil akan tampil berantakan, jarak antar baris terlalu jauh, begitu juga dengan halaman statis lainnya (thanks to Chondik)
+- Sedikit perbaikan pada file dina_titel.php (thanks to Hardie).
+- Penambahan fasilitas pencarian berita berdasarkan judul di halaman administrator (modifikasi file berita.php di foder adminweb/modul/mod_berita.
+
+02/09/2010 (lokomedia-1.4.4):
+- Penerapan Paging ala Google, baik di halaman administrator maupun halaman pengunjung (thanks to Husada).
+- Perbaikan desain footer overlapping pada halaman administrator (thanks to luky wijaya).
+- Apabila kategori mengandung dua kata atau lebih yang ada spasinya, maka akan mengakibatkan paging menjadi tidak berfungsi, misalnya Baju Tidur.
+
+23/06/2010 (lokomedia-1.4.3):
+Update kali ini diambil dari pengembang website http://wiraswastamuslim.com (thanks to Imran), yaitu:
+- Penambahan Halaman Statis (tabel halamanstatis), contohnya Profil dan Visi Misi.
+- Penambahan Top Menu (topmenu.php), yaitu Menu Utama dan Sub Menu (tabel mainmenu dan tabel submenu). Untuk menambah/mengedit menu bisa dilakukan melalui halaman administrator.
+- Ada juga tambahan navigasi atau breadcumb (breadcumb.php) agar user mengetahui sedang berada di halaman mana.
+
+27/05/2010 (lokomedia-1.4.2):
+- Penambahan tinymce_compressor untuk mempercepat agar editor tinymcpuk dapat ditampilkan lebih cepat. Efeknya akan terasa saat online (thanks to Husada).
+- Pencarian tidak hanya mencari dari isi berita saja, tapi juga judul berita, karena tidak menutup kemungkinan kata yang dicari malah ada pada judulnya (thanks to Husada).
+- apabila kita menghapus berita yang tidak ada gambarnya, maka akan tampil peringatan di browser, namun proses penghapusan berhasil, namun mengganggu pandangan dan tidak kembali ke halaman halaman administrator. Jadi, pada file aksi_berita.php ditambahkan IF untuk mengecek apakah ada gambar pada sebuah berita atau tidak? (thanks to Fajar Nugraha).
+
+
+20/05/2010 (lokomedia-1.4.1):
+- Agar tidak bosan, header dari Halaman Administrator telah saya ganti.
+- Pada file .htaccess untuk kategori telah saya ubah agar alamat urlnya mengikuti nama kategori, kalau sebelumnya: kategori-2.html diubah menjadi kategori-2-olahraga.html (thanks to Ahmed Ridho).
+- Pada file kiri.php di bagian detail berita perkategori telah ditambahkan <table> untuk merapikan tampilan seperti halaman utama/Home (thanks to Fajar Nugraha).
+- Celah lainnya, kita bisa menginputkan berita tanpa Login, yaitu dengan langsung mengetik alamat domain/adminweb/modul/mod_berita/berita.php, kemudian mengubah actionnya menjadi domain/adminweb/modul/mod_berita/aksi_berita.php. Oleh karena itu, setiap file dalam modul sudah ditambahkan session untuk menangkal hal tersebut (thanks to Bayu).
+
+
+17/05/2010 (lokomedia-1.4):
+- Untuk mempercantik Halaman Administrator, ditambahkan ikon-ikon Control Panel sebagai alternatif selain menu untuk mengelola content website (thanks to Suhan).
+- Pada input text untuk Pencarian, pengunjung masih bisa mengisikan kode XSS, misalnya <script>, maka hasil pencariannya akan membuat layout website menjadi berantakan, maka pada file kiri.php (baris 267) telah ditambahkan fungsi untuk menangkal XSS (thanks to Eddy Irawan).
+- Sebelumnya untuk mengubah pertanyaan pada Poling dilakukan secara manual melalui file kanan.php. Agar terlihat dinamis, maka pertanyaan untuk Poling bisa diubah melalui Halaman Administrator (thanks to Bayu). Pertama, saya menambahkan field status pada tabel poling untuk membedakan antara Pertanyaan dan Jawaban Poling. Kemudian pada file kanan.php juga disesuaikan agar bisa menampilkan Pertanyaan dan Jawaban Poling yang aktif. Sedangkan pada file kiri.php juga disesuaikan untuk Pertanyaan dan Jawaban Poling.
+- Beberapa email yang masuk menanyakan mengapa mod_rewrite tidak bisa diaktifkan/xampp gagal di restart, padahal sudah sesuai dengan petunjuk pada video tutorial. Kemudian, saya coba pada beberapa komputer di kantor, ternyata ada yang berhasil dan ada juga yang gagal, termasuk di komputer Macintosh juga gagal. Untuk komputer yang gagal, saya coba uninstall xampp dan menggantinya dengan wamp, ternyata berhasil (mod_rewrite sukses). Dan sampai saat ini, wamp selalu berhasil menjalankan mod_rewrite pada semua komputer yang pernah saya coba, baik di kantor, rumah maupun warnet.
+- Namun, apabila CMS Lokomedia dijalankan pada wamp, akan tampil peringatan (Notice) yang mengganggu layout dan content website. Oleh karena itu, pada versi ini telah saya perbaiki dengan menyesuaikan beberapa skrip seperti:
+$_GET[module] disesuaikan dengan menambahkan tanda petik tunggal menjadi $_GET['module']. Dan pada file media.php yang terdapat di folder adminweb juga telah saya tambahkan baris error_reporting(0);
+- Apabila file .htaccess tidak berfungsi saat Anda online-kan di suatu server hosting, coba tambahkan pada file .htaccess pada baris ke-2 (thanks to Fajar Nugraha):
+
+RewriteBase /
+
+
+26/02/2010 (lokomedia-1.3):
+- Ada yang bisa menuliskan berita langsung tanpa harus login, caranya http://namadomain/content.php? (thanks to Daus), sehingga file content.php harus diproteksi dengan cara mencek level user yang login (baris 51 s/d 53): 
+- Sekarang untuk mengaktifkan/menon-aktifkan suatu modul di halaman pengunjung tidak perlu melalui skrip lagi, katanya agak ribet bagi newbie, jadi cukup masuk ke halaman administrator, lalu klik Manajemen Modul, lihat status Publish, apabila suatu Modul status Publish = Y, artinya modul tersebut ditampilkan di halaman pengunjung. Sedangkan untuk menon-aktifkan suatu modul, klik link Edit pada modul yang diinginkan, lalu ubah Publish = N, dan klik Update.
+Beberapa file yang diubah:
+  - modul.php yang terdapat di folder adminweb/modul/mod_modul/, yaitu pada bagian 'tambahmodul' ditambahkan input untuk Publish dan Aktif (baris 31 s/d 34).
+  - kiri.php, kanan.php, dan tengah.php yang terdapat di folder lokomedia, intinya memeriksa apakah sebuah modul status Publish, apabila Y maka ditampilkan, sedangkan N berarti tidak ditampilkan. Salah satu contohnya pada file kanan.php (baris 11 s/d 16) untuk memeriksa apakah modul RSS dipublish atau tidak.
+ 
+
+10/02/2010 (lokomedia-1.2):
+- Menampilkan ikon youtube (halaman administrator, misalnya Tambah Berita), solusinya ada di file media.php yang berada di folder adminweb, pada baris 21 dan baris 25, tambahkan kata-kata: youtube.
+- Mengenai berita terkait yang tidak tampil dikarenakan id_berita lebih dari dua digit, misalnya 100 .. solusinya ada di file kiri.php yang berada di folder lokomedia, pada baris 118, yaitu: $ambil_id = substr($_GET[id],0,4); --> maksudnya mengambil empat digit dari id_berita, jadi kalau id_beritanya sampai ribuan masih mendukung dan kalau dibawah empat digit juga terbaca kok.
+ 
+
+05/02/2010 (lokomedia-1.1): 
+- Membatasi input teks di form pencarian untuk mencegah user memasukkan teks sampai 1000 karakter, cukup tambahkan maxlength=50 pada file tengah.php pada baris ke-5 (thanks to thondi).
+- Mulai saat ini, setiap ada update akan saya sertakan tanggalnya dan saya beritahu bagian mana dan baris ke berapa yang saya perbaiki (thanks to wilda).
+
+
+=====> daftar update dibawah ini sudah lupa tanggalnya.
+
+- Donwload Counter sudah bisa berjalan dengan baik.
+- Merapikan tampilan hasil pencarian (thanks to thondi).
+- Memproteksi Agenda dan Profil Administrator agar tidak bisa diakses oleh user biasa (thanks to Adhi Nugroho).
+- Merapikan tampilan semua berita (thanks to thondi)
+- Wuih aplikasi download yang sudah saya proteksi ternyata masih bisa ditembus dengan cara mengetikkan http://localhost/lokomedia/downlot.php?file=../config/koneksi.php (syukur deh sekarang makin banyak aja yang pinter programming - thanks to komaruddin a.k.a virus13). Oleh karena itu segera saya update menggunakan tekniknya Ahmed Ridho yang telah saya bahas pada buku Trik Rahasia Master PHP Terbongkar Lagi, tepatnya pada halaman 149.
+- Menurut laporan code13 yang mencoba login sebagai user biasa, dia bisa mengakses modul-modul admin, contohnya dengan mengetikkan http://localhost/lokomedia/adminweb/media.php?module=komentar, dan modul-modul lainnya .. perbaikan bug tersebut bisa ditangani dengan mengecek level user yang ada di session, implementasinya bisa dilihat di file content.php yang terdapat di folder lokomedia/adminweb.
+- Beberapa komentar dan email yang masuk menyarankan agar mengganti nicedit dengan tinymcpuk sebagai editor textarea, karena lebih kaya fiturnya, thanks to code13 dan reva atas sumbangsihnya, sehingga memudahkan saya dalam mengintegrasikan tinymcpuk dengan cms lokomedia.
+- Penambahan fungsi unlink pada file aksi_berita yang terdapat di folder adminweb/modul/mod_berita, fungsinya untuk menghapus file gambar di server, jadi tidak hanya menghapus nama filenya di database, akan tetapi juga menghapus filenya di server.
+- Penambahan fitur Arsip Berita (thanks to code 13 from http://blog.nagageni.com) yang di include pada file tengah.php .. adapun file-file yang menangani arsip berita adalah arsipberita.php, getarticle.php, dan jquery.js.
+- Perbaikan Tambah Agenda yang datanya tidak bisa tersimpan ke database.
+- Menghilangkan angka 1 di pojok kiri bawah (bug).
+- Menghilangkan tampilan error saat melakukan vote pada polling (bug).
+- Validasi input pada shoutbox.
+- Validasi input pada hubungi kami disertai penambahan captcha pada form hubungi kami.
+- Pembatasan karakter yang boleh dimasukkan ke dalam form komentar untuk mencegah user jahil yang mengisikan komentar lebih dari 1000 karakter.
+- Perbaikan error saat menyimpan komentar berita (simpankomentar.php).
+- Pemberian Anchor pada nama komentar (kiri.php pada bagian detail berita), sehingga ketika diklik komentar pada bagian Komentar Terakhir di halaman utama (tengah.php), maka akan langsung menuju komentar yang diklik pada halaman detail berita.s
+- Penambahan status YM (Yahoo Messenger) pada file kanan.php, hasilnya hanya bisa dilihat saat sudah di online-kan di Internet.
+- Penambahan fungsi session_generate_id pada file cek_login.php agar user biasa lebih sulit mengganti password sang administrator.
+- Penambahan fungsi unlink pada file aksi_galerifoto yang terdapat di folder adminweb/modul/mod_galerifoto, fungsinya untuk menghapus file gambar di server, jadi tidak hanya menghapus nama filenya di database, akan tetapi juga menghapus filenya di server.
+- Penambahan fungsi trim pada file simpankomentar.php untuk mengantisipasi pengunjung mengisikan spasi untuk mengosongkan nama dan komentarnya.
+- Penambahan field aktif pada tabel kategori dan tabel album, nantinya data-data pada kedua tabel tersebut tidak bisa dihapus, tapi bisa di non-aktifkan dengan mengklik menu Edit. Mengapa tidak boleh dihapus? Karena kalau data kategori dihapus, maka berita-berita pada kategori tersebut sudah tidak bisa ditampilkan. Begitu juga dengan album, apabila album dihapus, maka foto-foto pada album tersebut sudah tidak bisa ditampilkan.
+
+
