@@ -10,4 +10,10 @@ CMS ini menjadi source code utama dari beberapa website yang telah dimodikasi an
 5. https://www.legalcenter.id
 6. https://www.gojateng.com
 
-Thanks !      
+Berikut langkah untuk mengunduh CMS Lokomedia Versi 1.6.1 :
+
+1. Navigasikan ke halaman utama (main) repositori yaitu: https://github.com/jokoyu/cms-lokomedia
+2. Klik tombol CODE yang berada di sebelah kanan atas sehingga akan muncul dropdown menu
+3. Selanjutnya klik "Download ZIP"
+
+Terimakasih !    
